@@ -1,4 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss/theme";
+@import "tailwindcss/utilities";
+
+@theme {
+  --color-secondary: #64748b;
+  --color-blue: #2563eb;
+  --color-orange: #f97316;
+  --color-green: #10b981;
+}
+
+@layer utilities {
+  .align-center {
+    align-items: center;
+  }
+}
 
 :root {
   /* Color Palette */

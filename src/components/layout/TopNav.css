@@ -8,9 +8,7 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
-/* Header Row */
 .saas-header {
-  border-bottom: 1px solid #f1f5f9;
   width: 100%;
   background: white;
 }

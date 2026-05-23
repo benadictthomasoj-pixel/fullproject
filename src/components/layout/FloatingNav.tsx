@@ -30,9 +30,9 @@ export const FloatingNav: React.FC = () => {
         </div>
 
         <nav className={`nav-links ${mobileMenuOpen ? 'open' : ''}`}>
-          <NavLink to="/" className={({ isActive }) => (isActive ? 'active' : '')} end>Overview</NavLink>
-          <NavLink to="/monitoring" className={({ isActive }) => (isActive ? 'active' : '')}>Map</NavLink>
-          <NavLink to="/raise-issue" className={({ isActive }) => (isActive ? 'active' : '')}>Report Issue</NavLink>
+          <NavLink to="/dashboard" className={({ isActive }) => (isActive ? 'active' : '')} end>Overview</NavLink>
+          <NavLink to="/dashboard/monitoring" className={({ isActive }) => (isActive ? 'active' : '')}>Map</NavLink>
+          <NavLink to="/dashboard/raise-issue" className={({ isActive }) => (isActive ? 'active' : '')}>Report Issue</NavLink>
         </nav>
 
         <div className="nav-actions">

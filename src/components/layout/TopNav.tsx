@@ -5,13 +5,13 @@ import { useLocation, POPULAR_LOCATIONS, LOCATION_MAP } from '../../contexts/Loc
 import './TopNav.css';
 
 const navItems = [
-  { path: '/', label: 'Overview' },
-  { path: '/monitoring', label: 'Road Monitoring' },
-  { path: '/transparency', label: 'Transparency' },
-  { path: '/complaints', label: 'Recent Complaints' },
-  { path: '/authorities', label: 'Authorities' },
-  { path: '/analytics', label: 'Analytics' },
-  { path: '/feedback', label: 'Feedback' },
+  { path: '/dashboard', label: 'Overview' },
+  { path: '/dashboard/monitoring', label: 'Road Monitoring' },
+  { path: '/dashboard/transparency', label: 'Transparency' },
+  { path: '/dashboard/complaints', label: 'Recent Complaints' },
+  { path: '/dashboard/authorities', label: 'Authorities' },
+  { path: '/dashboard/analytics', label: 'Analytics' },
+  { path: '/dashboard/feedback', label: 'Feedback' },
 ];
 
 const timeAgo = (date: Date) => {
@@ -103,7 +103,7 @@ export const TopNav: React.FC = () => {
           {/* Logo + Location stacked vertically */}
           <div className="saas-logo">
             <div className="branding-group">
-              <NavLink to="/" className="logo-row">
+              <NavLink to="/dashboard" className="logo-row">
                 <div className="logo-icon">
                   <Map size={32} color="white" strokeWidth={2.5} />
                 </div>
@@ -227,7 +227,7 @@ export const TopNav: React.FC = () => {
             <ul className="saas-nav-list">
               {navItems.map(item => (
                 <li key={item.path} className="nav-item">
-                  <NavLink to={item.path} className={({ isActive }) => 'nav-link ' + (isActive ? 'active' : '')} end={item.path === '/'}>
+                  <NavLink to={item.path} className={({ isActive }) => 'nav-link ' + (isActive ? 'active' : '')} end={item.path === '/dashboard'}>
                     {item.label}
                   </NavLink>
                 </li>

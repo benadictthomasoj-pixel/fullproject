@@ -9,6 +9,8 @@ import { Complaints } from './pages/Complaints';
 import { Authorities } from './pages/Authorities';
 import { Analytics } from './pages/Analytics';
 import { Feedback } from './pages/Feedback';
+import { Landing } from './pages/Landing';
+import { Login } from './pages/Login';
 
 const Settings = () => <div className="animate-fade-in" style={{ padding: '2rem' }}><h2>Settings</h2></div>;
 
@@ -17,7 +19,9 @@ function App() {
     <LocationProvider>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Layout />}>
+          <Route path="/" element={<Landing />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/dashboard" element={<Layout />}>
             <Route index element={<Overview />} />
             <Route path="monitoring" element={<RoadMonitoring />} />
             <Route path="transparency" element={<Transparency />} />
