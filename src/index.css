@@ -7,6 +7,9 @@
   --color-blue: #2563eb;
   --color-orange: #f97316;
   --color-green: #10b981;
+  --color-brand-light: #38BDF8;
+  --color-brand-dark: #0EA5E9;
+  --color-primaryText: #0F172A;
 }
 
 @layer utilities {
@@ -209,4 +212,88 @@ button {
 .badge-resolved {
   background-color: var(--status-resolved-light);
   color: var(--status-resolved);
+}
+
+/* Premium Glassmorphic Surfaces */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(226, 232, 240, 0.7);
+  box-shadow: 
+    0 4px 6px -1px rgba(15, 23, 42, 0.03), 
+    0 10px 15px -3px rgba(15, 23, 42, 0.05),
+    0 20px 25px -5px rgba(15, 23, 42, 0.02);
+}
+
+.glass-panel-accent {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  box-shadow: 
+    0 10px 25px -5px rgba(56, 189, 248, 0.08), 
+    0 8px 10px -6px rgba(14, 165, 233, 0.05);
+}
+
+/* Glass context bar header styling */
+.glass-context-bar {
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(226, 232, 240, 0.5);
+}
+
+/* Custom Scrollbar for chat list */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.15);
+  border-radius: 999px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.35);
+}
+
+/* Ambient Radial Mesh Orbs */
+@keyframes mesh-float-1 {
+  0% { transform: translate(0px, 0px) scale(1); }
+  33% { transform: translate(80px, -120px) scale(1.15); }
+  66% { transform: translate(-60px, 80px) scale(0.9); }
+  100% { transform: translate(0px, 0px) scale(1); }
+}
+
+@keyframes mesh-float-2 {
+  0% { transform: translate(0px, 0px) scale(1); }
+  50% { transform: translate(-100px, 120px) scale(1.1); }
+  100% { transform: translate(0px, 0px) scale(1); }
+}
+
+@keyframes mesh-float-3 {
+  0% { transform: translate(0px, 0px) scale(1); }
+  33% { transform: translate(120px, 60px) scale(0.85); }
+  66% { transform: translate(-80px, -100px) scale(1.2); }
+  100% { transform: translate(0px, 0px) scale(1); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.08); }
+}
+
+.animate-mesh-1 {
+  animation: mesh-float-1 30s infinite ease-in-out;
+}
+.animate-mesh-2 {
+  animation: mesh-float-2 35s infinite ease-in-out;
+}
+.animate-mesh-3 {
+  animation: mesh-float-3 32s infinite ease-in-out;
+}
+.animate-pulse-glow {
+  animation: pulse-glow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
