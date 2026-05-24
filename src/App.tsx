@@ -11,6 +11,7 @@ import { Analytics } from './pages/Analytics';
 import { Feedback } from './pages/Feedback';
 import { Landing } from './pages/Landing';
 import { Login } from './pages/Login';
+import { Profile } from './pages/Profile';
 
 const Settings = () => <div className="animate-fade-in" style={{ padding: '2rem' }}><h2>Settings</h2></div>;
 
@@ -28,6 +29,7 @@ function App() {
             <Route path="complaints" element={<Complaints />} />
             <Route path="authorities" element={<Authorities />} />
             <Route path="analytics" element={<Analytics />} />
+            <Route path="profile" element={<Profile />} />
             <Route path="settings" element={<Settings />} />
             <Route path="feedback" element={<Feedback />} />
           </Route>

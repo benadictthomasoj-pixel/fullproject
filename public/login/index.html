@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - RoadWatch AI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- SVG Vector Background -->
+    <svg class="svg-background" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <linearGradient id="glass-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="rgba(255, 255, 255, 0.8)" />
+                <stop offset="50%" stop-color="rgba(255, 255, 255, 0.1)" />
+                <stop offset="100%" stop-color="rgba(255, 255, 255, 0.5)" />
+            </linearGradient>
+            <filter id="glow">
+                <feGaussianBlur stdDeviation="5" result="coloredBlur"/>
+                <feMerge>
+                    <feMergeNode in="coloredBlur"/>
+                    <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+            </filter>
+        </defs>
+
+        <!-- Left Bridge Section -->
+        <g transform="translate(-100, 200)">
+            <!-- Support Pillars -->
+            <path class="bridge-dark" d="M 100,880 L 150,880 L 200,500 L 100,500 Z" />
+            <path class="bridge-dark" d="M 400,880 L 450,880 L 500,450 L 400,450 Z" />
+            <path class="bridge-solid" d="M 125,500 L 175,500 L 150,400 Z" />
+            <path class="bridge-solid" d="M 425,450 L 475,450 L 450,350 Z" />
+            
+            <!-- Main Deck -->
+            <path class="bridge-solid" d="M -100,500 Q 300,450 700,300 L 730,320 Q 300,480 -100,530 Z" />
+            
+            <!-- Underbelly Details -->
+            <path class="bridge-line" d="M -100,530 Q 300,480 730,320" />
+            <path class="bridge-line" d="M 0,515 L 0,550 M 100,500 L 100,530 M 200,480 L 200,510 M 300,450 L 300,480 M 400,420 L 400,450 M 500,390 L 500,420 M 600,360 L 600,390" />
+            
+            <!-- Tech Lines / Energy -->
+            <path class="bridge-glow" d="M -100,515 Q 300,465 680,310" />
+            <path class="bridge-line" d="M -100,490 Q 300,440 715,290" />
+            <path class="bridge-line" d="M -100,480 Q 300,430 720,285" stroke-dasharray="2, 6" />
+            
+            <!-- Energy Nodes -->
+            <circle cx="150" cy="400" r="4" fill="var(--sky-blue)" filter="url(#glow)" />
+            <circle cx="350" cy="355" r="4" fill="var(--sky-blue)" filter="url(#glow)" />
+            <circle cx="550" cy="310" r="4" fill="var(--sky-blue)" filter="url(#glow)" />
+            
+            <!-- Jagged Broken Edge Left -->
+            <path class="bridge-solid" d="M 700,300 L 720,285 L 735,310 L 715,325 L 730,340 L 705,355 L 685,320 Z" />
+            
+            <!-- Cables -->
+            <path class="bridge-line" d="M 150,300 L 300,470" />
+            <path class="bridge-line" d="M 150,300 L 400,450" />
+            <path class="bridge-line" d="M 150,300 L 500,420" />
+            <path class="bridge-line" d="M 150,300 L 600,380" />
+            <path class="bridge-line" d="M 150,300 L 700,330" />
+        </g>
+
+        <!-- Right Bridge Section -->
+        <g transform="translate(1100, 100)">
+            <!-- Support Pillars -->
+            <path class="bridge-dark" d="M 800,980 L 750,980 L 700,600 L 800,600 Z" />
+            <path class="bridge-dark" d="M 500,980 L 450,980 L 400,500 L 500,500 Z" />
+            <path class="bridge-solid" d="M 725,600 L 775,600 L 750,450 Z" />
+            <path class="bridge-solid" d="M 425,500 L 475,500 L 450,400 Z" />
+            
+            <!-- Main Deck -->
+            <path class="bridge-solid" d="M 1000,600 Q 600,500 200,350 L 170,370 Q 600,530 1000,630 Z" />
+            
+            <!-- Underbelly Details -->
+            <path class="bridge-line" d="M 1000,630 Q 600,530 170,370" />
+            <path class="bridge-line" d="M 900,590 L 900,620 M 800,560 L 800,590 M 700,530 L 700,560 M 600,500 L 600,530 M 500,470 L 500,500 M 400,440 L 400,470 M 300,410 L 300,440 M 200,380 L 200,410" />
+            
+            <!-- Tech Lines / Energy -->
+            <path class="bridge-glow" d="M 1000,615 Q 600,515 180,360" />
+            <path class="bridge-line" d="M 1000,590 Q 600,490 215,340" />
+            <path class="bridge-line" d="M 1000,580 Q 600,480 220,335" stroke-dasharray="2, 6" />
+            
+            <!-- Energy Nodes -->
+            <circle cx="800" cy="530" r="4" fill="var(--sky-blue)" filter="url(#glow)" />
+            <circle cx="600" cy="465" r="4" fill="var(--sky-blue)" filter="url(#glow)" />
+            <circle cx="400" cy="405" r="4" fill="var(--sky-blue)" filter="url(#glow)" />
+            
+            <!-- Jagged Broken Edge Right -->
+            <path class="bridge-solid" d="M 200,350 L 180,335 L 165,360 L 185,375 L 170,390 L 195,405 L 215,370 Z" />
+            
+            <!-- Cables -->
+            <path class="bridge-line" d="M 750,400 L 600,520" />
+            <path class="bridge-line" d="M 750,400 L 500,490" />
+            <path class="bridge-line" d="M 750,400 L 400,470" />
+            <path class="bridge-line" d="M 750,400 L 300,430" />
+            <path class="bridge-line" d="M 750,400 L 200,380" />
+        </g>
+
+        <!-- Magnifying Lens over Gap -->
+        <g class="lens-container" transform="translate(800, 400)">
+            <!-- Handle -->
+            <path class="lens-handle" d="M 70,70 L 130,130 Q 140,140 130,150 Q 120,160 110,150 L 50,90 Z" />
+            
+            <!-- Outer Ring -->
+            <circle cx="0" cy="0" r="100" class="bridge-solid" />
+            
+            <!-- Glass -->
+            <circle cx="0" cy="0" r="90" class="lens-glass" />
+            
+            <!-- Detailed Cracks (Zoomed in view of the gap) -->
+            <path class="crack-zoomed" d="M -60,-20 L -30,-10 L 0,-40 L 20,10 L 50,-5 L 70,30" />
+            <path class="crack-zoomed" d="M -40,30 L -10,15 L 10,45 L 40,25" />
+            
+            <!-- Floating Debris -->
+            <polygon points="-20,-50 -10,-40 -25,-30" fill="#cbd5e1" />
+            <polygon points="40,-30 55,-25 45,-15" fill="#cbd5e1" />
+            <polygon points="-30,60 -15,50 -20,70" fill="#cbd5e1" />
+            
+            <!-- Glass Highlight / Reflection -->
+            <path class="lens-highlight" d="M -70,-50 Q 0,-90 70,-50 A 90 90 0 0 0 -70,-50 Z" />
+            
+            <!-- Target Reticle (Tech Element) -->
+            <path d="M -15,0 L 15,0 M 0,-15 L 0,15" stroke="var(--sky-blue)" stroke-width="2" opacity="0.6" />
+            <circle cx="0" cy="0" r="40" stroke="var(--sky-blue)" stroke-width="1" fill="none" opacity="0.4" stroke-dasharray="5,5" />
+        </g>
+    </svg>
+    <div class="particles" id="particles"></div>
+    
+    <!-- Top left back button -->
+    <a href="/" class="back-btn">
+        <i class="fa-solid fa-arrow-left"></i> Back to Home
+    </a>
+
+    <!-- Main Container -->
+    <div class="login-container">
+        
+        <!-- Login Panel -->
+        <div class="login-card fade-in">
+            <div class="logo-area">
+                <i class="fa-solid fa-road-circle-check brand-icon"></i>
+                <h2>Welcome to login page</h2>
+                <p>Login to access the AI-powered smart road monitoring platform.</p>
+            </div>
+
+            <!-- Login Methods Tabs -->
+            <div class="tabs">
+                <button class="tab-btn active" onclick="switchTab('email')">Email OTP</button>
+                <button class="tab-btn" onclick="switchTab('mobile')">Mobile OTP</button>
+            </div>
+
+            <!-- Email OTP Form -->
+            <form id="email-form" class="login-form active" onsubmit="event.preventDefault(); verifyOTP('email');">
+                <div class="input-group">
+                    <label>Email Address</label>
+                    <div class="input-with-icon">
+                        <i class="fa-regular fa-envelope"></i>
+                        <input type="email" id="email-input" placeholder="citizen@example.com" required>
+                    </div>
+                </div>
+                
+                <div class="otp-section" id="email-otp-section">
+                    <div class="input-group">
+                        <label>One Time Password</label>
+                        <div class="input-with-icon">
+                            <i class="fa-solid fa-key"></i>
+                            <input type="text" id="email-otp-input" placeholder="Enter 6-digit OTP" pattern="[0-9]{6}" maxlength="6">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn btn-outline w-100" id="email-send-btn" onclick="sendOTP('email')">
+                        Send OTP
+                    </button>
+                    <button type="submit" class="btn btn-primary w-100 hidden" id="email-verify-btn">
+                        Verify & Login <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            </form>
+
+            <!-- Mobile OTP Form -->
+            <form id="mobile-form" class="login-form" onsubmit="event.preventDefault(); verifyOTP('mobile');">
+                <div class="input-group">
+                    <label>Mobile Number</label>
+                    <div class="input-with-icon">
+                        <i class="fa-solid fa-mobile-screen"></i>
+                        <input type="tel" id="mobile-input" placeholder="+1 (555) 000-0000" required>
+                    </div>
+                </div>
+                
+                <div class="otp-section" id="mobile-otp-section">
+                    <div class="input-group">
+                        <label>One Time Password</label>
+                        <div class="input-with-icon">
+                            <i class="fa-solid fa-key"></i>
+                            <input type="text" id="mobile-otp-input" placeholder="Enter 6-digit OTP" pattern="[0-9]{6}" maxlength="6">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn btn-outline w-100" id="mobile-send-btn" onclick="sendOTP('mobile')">
+                        Send SMS OTP
+                    </button>
+                    <button type="submit" class="btn btn-primary w-100 hidden" id="mobile-verify-btn">
+                        Verify & Login <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            </form>
+
+            <div class="login-footer">
+                <label class="remember-me">
+                    <input type="checkbox" checked>
+                    <span>Remember me on this device</span>
+                </label>
+                <a href="#" class="help-link">Need Help?</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="toast" class="toast"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>

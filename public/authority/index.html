@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RoadLens - Smart City Road Governance Dashboard</title>
+    <!-- Use Inter font as requested -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for modern icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="./style.css">
+  </head>
+  <body>
+    
+    <!-- Reserved Empty White Area matching the exact height of the original navbar -->
+
+    <main class="dashboard-container">
+      
+      <!-- LEFT PANEL -->
+      <section class="left-panel">
+        
+        <div class="location-wrapper">
+          <div class="location-selector" id="locationSelector">
+            <div style="display: flex; flex-direction: column;">
+              <span class="location-badge">Live Location</span>
+              <div style="display: flex; align-items: center; gap: 4px;">
+                <span class="loc-icon-wrapper"><i class="fa-solid fa-location-dot"></i></span>
+                <select id="citySelect">
+                  <!-- Populated by JS -->
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel-header">
+          <h2>Road Management Directory</h2>
+          <p class="subtitle">Overview and live tracking for all jurisdictional roads</p>
+        </div>
+
+        <!-- KPI Cards -->
+        <div class="kpi-container" id="kpiContainer">
+          <div class="kpi-card card-panel">
+            <div class="kpi-icon"><i class="fa-solid fa-route"></i></div>
+            <div class="kpi-data">
+              <span class="kpi-value" id="kpiTotalRoads">0</span>
+              <span class="kpi-label">Total Roads</span>
+            </div>
+          </div>
+          <div class="kpi-card card-panel">
+            <div class="kpi-icon"><i class="fa-solid fa-person-digging"></i></div>
+            <div class="kpi-data">
+              <span class="kpi-value" id="kpiActiveProjects">0</span>
+              <span class="kpi-label">Active Projects</span>
+            </div>
+          </div>
+          <div class="kpi-card card-panel">
+            <div class="kpi-icon text-orange"><i class="fa-solid fa-triangle-exclamation"></i></div>
+            <div class="kpi-data">
+              <span class="kpi-value" id="kpiUnderRepair">0</span>
+              <span class="kpi-label">Under Repair</span>
+            </div>
+          </div>
+          <div class="kpi-card card-panel">
+            <div class="kpi-icon text-green"><i class="fa-solid fa-check-double"></i></div>
+            <div class="kpi-data">
+              <span class="kpi-value" id="kpiCompleted">0</span>
+              <span class="kpi-label">Completed</span>
+            </div>
+          </div>
+          <div class="kpi-card card-panel">
+            <div class="kpi-icon text-purple"><i class="fa-solid fa-heart-pulse"></i></div>
+            <div class="kpi-data">
+              <span class="kpi-value" id="kpiAvgScore">0</span>
+              <span class="kpi-label">Avg Health Score</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Filters Section -->
+        <div class="filters-section card-panel">
+          <div class="search-box">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="searchInput" placeholder="Search roads by name or ID...">
+          </div>
+          <div class="filter-controls">
+            <select id="filterCondition" class="filter-select">
+              <option value="all">Condition: All</option>
+              <option value="Excellent">Excellent</option>
+              <option value="Good">Good</option>
+              <option value="Moderate">Moderate</option>
+              <option value="Poor">Poor</option>
+              <option value="Critical">Critical</option>
+            </select>
+            <select id="filterPriority" class="filter-select">
+              <option value="all">Priority: All</option>
+              <option value="High">High</option>
+              <option value="Medium">Medium</option>
+              <option value="Low">Low</option>
+              <option value="Critical">Critical</option>
+            </select>
+            <select id="filterStatus" class="filter-select">
+              <option value="all">Status: All</option>
+              <option value="Completed">Completed</option>
+              <option value="On Track">On Track</option>
+              <option value="Delayed">Delayed</option>
+              <option value="At Risk">At Risk</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Road Grid -->
+        <div class="road-grid" id="roadGrid">
+          <!-- Populated by JS -->
+        </div>
+
+      </section>
+
+      <!-- RIGHT PANEL (Sticky Detail View) -->
+      <section class="right-panel">
+        <div class="detail-container card-panel sticky-wrapper" id="detailContainer">
+          
+          <!-- Empty State -->
+          <div class="empty-state" id="emptyState">
+            <div class="empty-icon"><i class="fa-solid fa-map-location-dot"></i></div>
+            <h3>No Road Selected</h3>
+            <p>Select a road from the directory to view complete governance details, budgets, and maintenance history.</p>
+          </div>
+
+          <!-- Detail State (Hidden by default) -->
+          <div class="detail-content" id="detailContent" style="display: none;">
+            
+            <div class="detail-header">
+              <div class="detail-title-group">
+                <span class="badge condition-badge" id="dtCondition">Excellent</span>
+                <span class="badge priority-badge" id="dtPriority">Priority</span>
+              </div>
+              <h2 id="dtName">Road Name</h2>
+              <p class="detail-subtitle"><span id="dtId">ID</span> • <span id="dtZone">Zone</span> • <span id="dtWard">Ward</span></p>
+            </div>
+
+            <div class="detail-scroll-area">
+              
+              <!-- Map Placeholder -->
+              <div class="map-placeholder">
+                <div class="map-overlay">
+                  <i class="fa-solid fa-location-arrow"></i>
+                  <span>Live Geospatial Data Active</span>
+                </div>
+              </div>
+
+              <!-- Health Score Gauge -->
+              <div class="section-block">
+                <h3 class="section-title"><i class="fa-solid fa-stethoscope"></i> Health & Metrics</h3>
+                <div class="metrics-grid">
+                  <div class="metric-item">
+                    <span class="metric-label">Length</span>
+                    <span class="metric-val" id="dtLength">-</span>
+                  </div>
+                  <div class="metric-item">
+                    <span class="metric-label">Width</span>
+                    <span class="metric-val" id="dtWidth">-</span>
+                  </div>
+                  <div class="metric-item">
+                    <span class="metric-label">Last Inspection</span>
+                    <span class="metric-val" id="dtInspection">-</span>
+                  </div>
+                </div>
+                <div class="health-gauge-container">
+                  <div class="gauge-ring" id="healthGaugeRing">
+                    <div class="gauge-value" id="dtHealthScore">0</div>
+                  </div>
+                  <div class="gauge-label">Health Score</div>
+                </div>
+              </div>
+
+              <!-- Authority & Government -->
+              <div class="section-block">
+                <h3 class="section-title"><i class="fa-solid fa-building-columns"></i> Governance</h3>
+                <div class="info-card">
+                  <div class="info-row"><span class="label">Dept:</span> <span class="val" id="dtDept">-</span></div>
+                  <div class="info-row"><span class="label">Officer:</span> <span class="val" id="dtOfficer">-</span></div>
+                  <div class="info-row"><span class="label">Contact:</span> <span class="val" id="dtContact">-</span></div>
+                  <div class="info-row"><span class="label">Ownership:</span> <span class="val" id="dtOwnership">-</span></div>
+                  <div class="info-row"><span class="label">Scheme:</span> <span class="val badge scheme-badge" id="dtScheme">-</span></div>
+                </div>
+              </div>
+
+              <!-- Financials -->
+              <div class="section-block">
+                <h3 class="section-title"><i class="fa-solid fa-indian-rupee-sign"></i> Financials</h3>
+                <div class="budget-container">
+                  <div class="budget-header">
+                    <span class="budget-total" id="dtTotalBudget">-</span>
+                    <span class="budget-percentage" id="dtBudgetPct">0% Utilized</span>
+                  </div>
+                  <div class="progress-track">
+                    <div class="progress-fill budget-fill" id="dtBudgetBar" style="width: 0%"></div>
+                  </div>
+                  <div class="budget-details">
+                    <div><small>Utilized:</small> <span id="dtUtilizedBudget">-</span></div>
+                    <div><small>Contractor:</small> <span id="dtContractor">-</span></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Project Progress -->
+              <div class="section-block">
+                <h3 class="section-title"><i class="fa-solid fa-spinner"></i> Project Progress</h3>
+                <div class="progress-container">
+                  <div class="progress-header">
+                    <span class="status-text" id="dtTimelineStatus">-</span>
+                    <span class="days-remaining"><strong id="dtDaysRemaining">0</strong> days left</span>
+                  </div>
+                  <div class="progress-track">
+                    <div class="progress-fill project-fill" id="dtProgressBar" style="width: 0%"></div>
+                  </div>
+                  <div class="timeline-dates">
+                    <span id="dtStartDate">-</span>
+                    <span id="dtEstDate">-</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Citizen Reports -->
+              <div class="section-block">
+                <h3 class="section-title"><i class="fa-solid fa-users-viewfinder"></i> Citizen Reports</h3>
+                <div class="reports-grid">
+                  <div class="report-stat">
+                    <span class="r-val" id="dtRepTotal">0</span>
+                    <span class="r-label">Total</span>
+                  </div>
+                  <div class="report-stat r-open">
+                    <span class="r-val" id="dtRepOpen">0</span>
+                    <span class="r-label">Open</span>
+                  </div>
+                  <div class="report-stat r-resolved">
+                    <span class="r-val" id="dtRepResolved">0</span>
+                    <span class="r-label">Resolved</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Maintenance History -->
+              <div class="section-block">
+                <h3 class="section-title"><i class="fa-solid fa-screwdriver-wrench"></i> Maintenance History</h3>
+                <div class="timeline" id="dtMaintenanceList">
+                  <!-- Populated by JS -->
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>

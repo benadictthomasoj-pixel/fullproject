@@ -17,7 +17,7 @@ export const Layout: React.FC = () => {
   }, [location.pathname, setDashboardContext]);
 
   return (
-    <div className="layout-container relative overflow-hidden">
+    <div className="layout-container relative">
       <TopNav />
       <main className="main-content">
         <div className="content-container">

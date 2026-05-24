@@ -1,6 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
-export const Analytics = () => {
+export const Profile = () => {
+  useEffect(() => {
+    // Optional: communicate with iframe if needed
+  }, []);
+
   return (
     <div style={{
       width: '100%',
@@ -10,14 +14,14 @@ export const Analytics = () => {
       width: 'calc(100% + 3rem)'
     }}>
       <iframe
-        src="/analytics/analytics.html"
+        src="/profile/profile.html"
         style={{
           width: '100%',
           height: 'calc(100vh - 72px)',
           border: 'none',
           display: 'block'
         }}
-        title="Analytics Dashboard"
+        title="Profile Dashboard"
       />
     </div>
   );

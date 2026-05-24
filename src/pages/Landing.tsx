@@ -32,11 +32,11 @@ export const Landing = () => {
                 </a>
                 
                 <ul className="nav-menu" id="nav-menu">
-                    <li><a href="#impact" className="nav-link">Impact</a></li>
-                    <li><a href="#features" className="nav-link">Features</a></li>
-                    <li><a href="#how-it-works" className="nav-link">How It Works</a></li>
-                    <li><a href="#faqs" className="nav-link">FAQs</a></li>
-                    <li><a href="#about" className="nav-link">About</a></li>
+                    <li><a href="#impact" className="landing-nav-link">Impact</a></li>
+                    <li><a href="#features" className="landing-nav-link">Features</a></li>
+                    <li><a href="#how-it-works" className="landing-nav-link">How It Works</a></li>
+                    <li><a href="#faqs" className="landing-nav-link">FAQs</a></li>
+                    <li><a href="#about" className="landing-nav-link">About</a></li>
                     <li><button className="btn btn-primary" onClick={() => navigate("/login")}>Get Started</button></li>
                 </ul>
                 

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { NavLink, useLocation as useRouterLocation } from 'react-router-dom';
-import { Bell, Map, Menu, X } from 'lucide-react';
+import { NavLink, useLocation as useRouterLocation, useNavigate } from 'react-router-dom';
+import { Bell, Map, Menu, X, AlertCircle } from 'lucide-react';
 import { useLocation, POPULAR_LOCATIONS, LOCATION_MAP } from '../../contexts/LocationContext';
 import './TopNav.css';
 
@@ -23,18 +23,21 @@ const timeAgo = (date: Date) => {
 
 export const TopNav: React.FC = () => {
   const routerLocation = useRouterLocation();
+  const navigate = useNavigate();
   const { locationName, recentLocations, lastUpdated, setLocation, setGPSLocation } = useLocation();
 
   const [underlineStyle, setUnderlineStyle] = useState({ left: 0, width: 0, opacity: 0 });
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [profileMenuOpen, setProfileMenuOpen] = useState(false);
   const [locationDropOpen, setLocationDropOpen] = useState(false);
+  const [notificationsOpen, setNotificationsOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [updatedAt, setUpdatedAt] = useState('Just now');
 
   const navRef = useRef<HTMLElement>(null);
   const profileRef = useRef<HTMLDivElement>(null);
   const locationRef = useRef<HTMLDivElement>(null);
+  const notifRef = useRef<HTMLDivElement>(null);
 
   // Update "Updated X ago" ticker
   useEffect(() => {
@@ -71,6 +74,7 @@ export const TopNav: React.FC = () => {
     const handler = (e: MouseEvent) => {
       if (profileRef.current && !profileRef.current.contains(e.target as Node)) setProfileMenuOpen(false);
       if (locationRef.current && !locationRef.current.contains(e.target as Node)) setLocationDropOpen(false);
+      if (notifRef.current && !notifRef.current.contains(e.target as Node)) setNotificationsOpen(false);
     };
     document.addEventListener('mousedown', handler);
     return () => document.removeEventListener('mousedown', handler);
@@ -238,10 +242,47 @@ export const TopNav: React.FC = () => {
               style={{ left: underlineStyle.left, width: underlineStyle.width, opacity: underlineStyle.opacity }}
             />
 
-            <button className="icon-btn relative">
-              <Bell size={20} className="text-gray-600" />
-              <span className="notification-dot"></span>
-            </button>
+            <div className="notif-menu-container" ref={notifRef}>
+              <button className="icon-btn relative" onClick={() => setNotificationsOpen(!notificationsOpen)}>
+                <Bell size={20} className="text-gray-600" />
+                <span className="notification-dot"></span>
+              </button>
+              
+              {notificationsOpen && (
+                <div className="profile-menu-dropdown notif-menu-dropdown">
+                  <div className="profile-menu-header notif-header">
+                    <div className="profile-name">Notifications</div>
+                    <div className="notif-badge">3 New</div>
+                  </div>
+                  <div className="notif-menu-body">
+                    <div className="notif-item unread">
+                      <div className="notif-icon bg-red-100 text-red-600"><AlertCircle size={16}/></div>
+                      <div className="notif-content">
+                        <div className="notif-text">Emergency: Flood Alert reported in Velachery</div>
+                        <div className="notif-time">Just now</div>
+                      </div>
+                    </div>
+                    <div className="notif-item unread">
+                      <div className="notif-icon bg-orange-100 text-orange-600"><AlertCircle size={16}/></div>
+                      <div className="notif-content">
+                        <div className="notif-text">High Priority: Pothole on OMR needs immediate attention</div>
+                        <div className="notif-time">2 hours ago</div>
+                      </div>
+                    </div>
+                    <div className="notif-item">
+                      <div className="notif-icon bg-blue-100 text-blue-600"><Bell size={16}/></div>
+                      <div className="notif-content">
+                        <div className="notif-text">System maintenance scheduled for tonight at 2 AM</div>
+                        <div className="notif-time">1 day ago</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="notif-menu-footer">
+                    <button className="notif-show-more">Show More Details</button>
+                  </div>
+                </div>
+              )}
+            </div>
             <div className="user-profile profile-menu-container" ref={profileRef}>
               <img
                 src="https://ui-avatars.com/api/?name=Admin+User&background=0EA5E9&color=fff"
@@ -261,7 +302,10 @@ export const TopNav: React.FC = () => {
                   </div>
                   <div className="profile-menu-divider"></div>
                   
-                  <button className="profile-menu-item">
+                  <button className="profile-menu-item" onClick={() => {
+                    navigate('/dashboard/profile');
+                    setProfileMenuOpen(false);
+                  }}>
                     <span className="profile-item-icon">👤</span>
                     Profile Information
                   </button>

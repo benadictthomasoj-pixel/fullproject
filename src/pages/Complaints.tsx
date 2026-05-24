@@ -1,161 +1,176 @@
-import React from 'react';
-import { 
-  FileText, Search, Filter, AlertTriangle, CheckCircle2, Clock, UserCheck
-} from 'lucide-react';
+import React, { useState } from 'react';
 import './Complaints.css';
 
-const statsData = [
-  { title: 'New Reports Today', value: '45', icon: FileText, color: 'text-blue', bg: 'bg-blue-light' },
-  { title: 'Under Review', value: '112', icon: Clock, color: 'text-orange', bg: 'bg-orange-light' },
-  { title: 'Resolved Today', value: '28', icon: CheckCircle2, color: 'text-green', bg: 'bg-green-light' },
-  { title: 'Escalated Cases', value: '14', icon: AlertTriangle, color: 'text-red', bg: 'bg-red-light' },
-];
-
-const complaintsData = [
-  { id: 'C-8291', road: 'OMR Main Road', location: 'Perungudi Toll', category: 'Pothole', severity: 'critical', status: 'Pending', date: 'Oct 14, 10:30 AM' },
-  { id: 'C-8290', road: 'Anna Salai', location: 'Gemini Flyover', category: 'Drainage', severity: 'moderate', status: 'Under Review', date: 'Oct 14, 09:15 AM' },
-  { id: 'C-8289', road: 'Velachery Bypass', location: 'Phoenix Mall', category: 'Streetlight', severity: 'minor', status: 'Resolved', date: 'Oct 13, 08:45 PM' },
-  { id: 'C-8288', road: 'GST Road', location: 'Tambaram Sanatorium', category: 'Road Collapse', severity: 'critical', status: 'Escalated', date: 'Oct 13, 04:20 PM' },
-  { id: 'C-8287', road: 'Poonamallee High Road', location: 'Koyambedu', category: 'Surface Damage', severity: 'moderate', status: 'In Progress', date: 'Oct 13, 02:10 PM' },
-  { id: 'C-8286', road: 'Mount Road', location: 'Spencers Plaza', category: 'Pothole', severity: 'minor', status: 'Resolved', date: 'Oct 13, 11:05 AM' },
-  { id: 'C-8285', road: 'ECR', location: 'Kottivakkam', category: 'Water Logging', severity: 'moderate', status: 'Pending', date: 'Oct 13, 09:30 AM' },
-];
-
-const activityData = [
-  { action: 'Engineer Assigned', detail: 'Raja assigned to C-8291', time: '10 mins ago', icon: UserCheck, color: 'text-blue' },
-  { action: 'Repair Started', detail: 'Work initiated for C-8287', time: '1 hour ago', icon: Clock, color: 'text-orange' },
-  { action: 'Issue Resolved', detail: 'C-8289 marked as complete', time: '2 hours ago', icon: CheckCircle2, color: 'text-green' },
-  { action: 'Complaint Verified', detail: 'C-8290 verified by system', time: '3 hours ago', icon: FileText, color: 'text-secondary' },
-  { action: 'Escalation Alert', detail: 'C-8288 escalated to Dept Head', time: '5 hours ago', icon: AlertTriangle, color: 'text-red' },
-];
-
 export const Complaints: React.FC = () => {
+  const [statusFilter, setStatusFilter] = useState('all');
+  const [locationFilter, setLocationFilter] = useState('all');
+  const [severityFilter, setSeverityFilter] = useState('all');
+  const [dateFilter, setDateFilter] = useState('all');
+
   return (
     <div className="complaints-page animate-fade-in">
-      <div className="page-header flex justify-between align-end">
-        <div>
-          <h2 className="page-section-title">Recent Complaints</h2>
-          <p className="page-section-subtitle">Latest reports submitted by citizens.</p>
-        </div>
-        
-        {/* Filters Top Right */}
-        <div className="filters-bar flex gap-3">
-          <div className="search-box relative">
-            <Search size={16} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
-            <input type="text" placeholder="Search ID or Location..." className="input-search" />
+      
+      {/* Top Metric Boxes */}
+      <div className="top-boxes single-header">
+        {/* Emergency Alerts - Now full width */}
+        <div className="metric-card emergency-card full-width">
+          <div className="metric-header">
+            <div className="status-dot pulsing-red"></div>
+            <span className="metric-title">Active Emergency Alerts</span>
           </div>
-          <select className="filter-select">
-            <option>All Zones</option>
-            <option>South</option>
-            <option>Central</option>
-            <option>North</option>
-          </select>
-          <select className="filter-select">
-            <option>All Severities</option>
-            <option>Critical</option>
-            <option>Moderate</option>
-            <option>Minor</option>
-          </select>
-          <button className="btn btn-outline flex align-center gap-2">
-            <Filter size={16} /> More
-          </button>
+          <div className="metric-value">3 <span className="trend critical-subtle">Critical Action Required</span></div>
+          <div className="metric-subtext">Flood Alert (1) • Accident Zone (1) • Pothole Hazard (1)</div>
         </div>
       </div>
 
-      {/* Stats Cards */}
-      <div className="stats-grid">
-        {statsData.map((stat, idx) => (
-          <div key={idx} className="stat-card glass-panel flex align-center gap-4">
-            <div className={`stat-icon-wrapper ${stat.bg}`}>
-              <stat.icon size={28} className={stat.color} />
-            </div>
-            <div>
-              <div className="text-secondary text-sm font-medium">{stat.title}</div>
-              <div className="text-2xl font-bold mt-1">{stat.value}</div>
-            </div>
-          </div>
-        ))}
-      </div>
-
-      <div className="complaints-layout mt-6">
-        
-        {/* Main Column - Complaints Feed */}
-        <div className="main-column">
-          <div className="glass-panel p-0 overflow-hidden">
-            <table className="data-table">
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>Road & Location</th>
-                  <th>Category</th>
-                  <th>Severity</th>
-                  <th>Status</th>
-                  <th>Date</th>
-                </tr>
-              </thead>
-              <tbody>
-                {complaintsData.map((comp, idx) => (
-                  <tr key={idx} className="cursor-pointer">
-                    <td className="font-semibold text-blue">{comp.id}</td>
-                    <td>
-                      <div className="font-medium">{comp.road}</div>
-                      <div className="text-xs text-secondary">{comp.location}</div>
-                    </td>
-                    <td>{comp.category}</td>
-                    <td>
-                      <span className={`badge ${
-                        comp.severity === 'critical' ? 'bg-red-light text-red' : 
-                        comp.severity === 'moderate' ? 'bg-orange-light text-orange' : 
-                        'bg-green-light text-green'
-                      }`}>
-                        {comp.severity}
-                      </span>
-                    </td>
-                    <td>
-                      <span className={`status-dot ${comp.status.replace(' ', '-').toLowerCase()}`}></span>
-                      <span className="text-sm font-medium ml-2">{comp.status}</span>
-                    </td>
-                    <td className="text-sm text-secondary">{comp.date}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-            
-            <div className="pagination p-4 border-t flex justify-between align-center">
-              <span className="text-sm text-secondary">Showing 1 to 7 of 142 entries</span>
-              <div className="flex gap-2">
-                <button className="btn btn-outline text-sm py-1 px-3">Prev</button>
-                <button className="btn btn-primary text-sm py-1 px-3">1</button>
-                <button className="btn btn-outline text-sm py-1 px-3">2</button>
-                <button className="btn btn-outline text-sm py-1 px-3">3</button>
-                <button className="btn btn-outline text-sm py-1 px-3">Next</button>
-              </div>
-            </div>
+      {/* Complaints List Area */}
+      <div className="content-section">
+        <div className="section-header">
+          <h3>Complaints Directory</h3>
+          <div className="dropdown-filters">
+            <select id="statusFilter" className="filter-select" value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)}>
+              <option value="all">📋 All Statuses</option>
+              <option value="pending">⏳ Pending (42)</option>
+              <option value="ongoing">🚧 In Progress (18)</option>
+              <option value="completed">✅ Completed (320)</option>
+            </select>
+            <select id="locationFilter" className="filter-select" value={locationFilter} onChange={(e) => setLocationFilter(e.target.value)}>
+              <option value="all">📍 All Locations</option>
+              <option value="adyar">Adyar</option>
+              <option value="anna-nagar">Anna Nagar</option>
+              <option value="guindy">Guindy</option>
+              <option value="omr">OMR</option>
+              <option value="t-nagar">T. Nagar</option>
+              <option value="tambaram">Tambaram</option>
+              <option value="thiruvanmiyur">Thiruvanmiyur</option>
+              <option value="velachery">Velachery</option>
+            </select>
+            <select id="severityFilter" className="filter-select" value={severityFilter} onChange={(e) => setSeverityFilter(e.target.value)}>
+              <option value="all">⚠ All Severities</option>
+              <option value="high">High Priority</option>
+              <option value="medium">Medium Priority</option>
+              <option value="low">Low Priority</option>
+            </select>
+            <select id="dateFilter" className="filter-select" value={dateFilter} onChange={(e) => setDateFilter(e.target.value)}>
+              <option value="all">📅 All Time</option>
+              <option value="today">Today</option>
+              <option value="week">Last 7 Days</option>
+              <option value="month">This Month</option>
+            </select>
           </div>
         </div>
 
-        {/* Side Column - Recent Activity */}
-        <div className="side-column">
-          <div className="glass-panel p-6 h-full">
-            <h3 className="font-semibold text-lg mb-6">Recent Activity</h3>
-            <div className="activity-feed">
-              {activityData.map((act, idx) => (
-                <div key={idx} className="activity-item flex gap-4 mb-6 last:mb-0">
-                  <div className={`activity-icon-sm ${act.color} bg-gray-50 border`}>
-                    <act.icon size={14} />
-                  </div>
-                  <div>
-                    <div className="text-sm font-semibold">{act.action}</div>
-                    <div className="text-xs text-secondary mt-1">{act.detail}</div>
-                    <div className="text-xs text-gray-400 mt-2">{act.time}</div>
-                  </div>
-                </div>
-              ))}
+        <div className="complaints-list">
+          {/* List Item: Pending */}
+          <div className="complaint-item" data-status="pending" data-location="omr" data-severity="high" data-date="3">
+            <div className="item-status pending-bg">⏳ Pending</div>
+            <div className="item-details">
+              <h4>Deep Pothole on Main St</h4>
+              <p>Location: OMR • Priority: High • Reported 3 days ago</p>
+            </div>
+            <div className="item-meta">
+              <div className="meta-status">Waiting for action</div>
+              <div className="issuer">Issued by <strong>Karthik R.</strong></div>
             </div>
           </div>
-        </div>
 
+          {/* List Item: Ongoing */}
+          <div className="complaint-item" data-status="ongoing" data-location="velachery" data-severity="high" data-date="2">
+            <div className="item-status ongoing-bg">🚧 In Progress</div>
+            <div className="item-details">
+              <h4>Traffic Light Malfunction</h4>
+              <p>Location: Velachery • Priority: High • Est. Completion: 48 hrs</p>
+            </div>
+            <div className="item-meta">
+              <div className="meta-status">In Progress</div>
+              <div className="issuer">Issued by <strong>Priya S.</strong></div>
+            </div>
+          </div>
+
+          {/* List Item: Completed */}
+          <div className="complaint-item" data-status="completed" data-location="anna-nagar" data-severity="low" data-date="0">
+            <div className="item-status completed-bg">✅ Completed</div>
+            <div className="item-details">
+              <h4>Streetlight Fixed - 4th Avenue</h4>
+              <p>Location: Anna Nagar • Priority: Low • Last resolved 2 hrs ago</p>
+            </div>
+            <div className="item-meta">
+              <div className="meta-status">Resolved</div>
+              <div className="issuer">Issued by <strong>Arun M.</strong></div>
+            </div>
+          </div>
+          
+          {/* List Item: Pending */}
+          <div className="complaint-item" data-status="pending" data-location="tambaram" data-severity="medium" data-date="4">
+            <div className="item-status pending-bg">⏳ Pending</div>
+            <div className="item-details">
+              <h4>Broken Pavement near Park</h4>
+              <p>Location: Tambaram • Priority: Medium • Reported 4 days ago</p>
+            </div>
+            <div className="item-meta">
+              <div className="meta-status">Waiting for action</div>
+              <div className="issuer">Issued by <strong>Divya T.</strong></div>
+            </div>
+          </div>
+
+          {/* List Item: Ongoing */}
+          <div className="complaint-item" data-status="ongoing" data-location="t-nagar" data-severity="medium" data-date="1">
+            <div className="item-status ongoing-bg">🚧 In Progress</div>
+            <div className="item-details">
+              <h4>Fallen Tree Branch</h4>
+              <p>Location: T. Nagar • Priority: Medium • Est. Completion: 12 hrs</p>
+            </div>
+            <div className="item-meta">
+              <div className="meta-status">In Progress</div>
+              <div className="issuer">Issued by <strong>Manoj V.</strong></div>
+            </div>
+          </div>
+
+          {/* List Item: Pending */}
+          <div className="complaint-item" data-status="pending" data-location="adyar" data-severity="low" data-date="7">
+            <div className="item-status pending-bg">⏳ Pending</div>
+            <div className="item-details">
+              <h4>Faded Zebra Crossing</h4>
+              <p>Location: Adyar • Priority: Low • Reported 1 week ago</p>
+            </div>
+            <div className="item-meta">
+              <div className="meta-status">Waiting for action</div>
+              <div className="issuer">Issued by <strong>Sneha K.</strong></div>
+            </div>
+          </div>
+
+          {/* List Item: Completed */}
+          <div className="complaint-item" data-status="completed" data-location="guindy" data-severity="high" data-date="1">
+            <div className="item-status completed-bg">✅ Completed</div>
+            <div className="item-details">
+              <h4>Open Manhole Covered</h4>
+              <p>Location: Guindy • Priority: High • Last resolved 1 day ago</p>
+            </div>
+            <div className="item-meta">
+              <div className="meta-status">Resolved</div>
+              <div className="issuer">Issued by <strong>Ramesh N.</strong></div>
+            </div>
+          </div>
+
+          {/* List Item: Pending */}
+          <div className="complaint-item" data-status="pending" data-location="thiruvanmiyur" data-severity="high" data-date="0">
+            <div className="item-status pending-bg">⏳ Pending</div>
+            <div className="item-details">
+              <h4>Severe Waterlogging</h4>
+              <p>Location: Thiruvanmiyur • Priority: High • Reported 5 hrs ago</p>
+            </div>
+            <div className="item-meta">
+              <div className="meta-status">Waiting for action</div>
+              <div className="issuer">Issued by <strong>Anita R.</strong></div>
+            </div>
+          </div>
+
+          <div id="noRecordsMessage" style={{ display: 'none', textAlign: 'center', padding: '40px', color: 'var(--text-muted)', fontSize: '14px' }}>
+            No records found matching the selected filters.
+          </div>
+        </div>
       </div>
+      
     </div>
   );
 };

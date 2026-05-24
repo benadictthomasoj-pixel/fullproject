@@ -236,7 +236,7 @@ header.scrolled {
     align-items: center;
 }
 
-.landing-nav-link {
+.nav-link {
     text-decoration: none;
     color: var(--text-secondary);
     font-weight: 600;
@@ -245,11 +245,11 @@ header.scrolled {
     position: relative;
 }
 
-.landing-nav-link:hover, .landing-nav-link.active {
+.nav-link:hover, .nav-link.active {
     color: var(--accent-blue);
 }
 
-.landing-nav-link::after {
+.nav-link::after {
     content: '';
     position: absolute;
     bottom: -4px;
@@ -260,7 +260,7 @@ header.scrolled {
     transition: var(--transition-smooth);
 }
 
-.landing-nav-link:hover::after, .landing-nav-link.active::after {
+.nav-link:hover::after, .nav-link.active::after {
     width: 100%;
 }
 

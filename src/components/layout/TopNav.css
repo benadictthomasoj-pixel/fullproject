@@ -16,8 +16,8 @@
 .saas-header-content {
   max-width: 1600px;
   margin: 0 auto;
-  padding: 0 1.25rem 0 2rem; /* 20px right, 32px left */
-  height: 100px; /* Increased for breathing room above and below card */
+  padding: 0 1.25rem 0 2rem;
+  height: 90px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -70,8 +70,8 @@
   display: flex;
   align-items: flex-start;
   flex: 1;
-  min-width: 260px; /* Reduced spacing before Overview */
-  max-width: 280px;
+  min-width: 220px;
+  max-width: 260px;
 }
 
 .branding-group {
@@ -79,7 +79,7 @@
   flex-direction: column;
   align-items: flex-start;
   width: fit-content;
-  gap: 2px; /* 2px-4px spacing between RoadLens and Location Bar */
+  gap: 3px;
 }
 
 .logo-row {
@@ -89,17 +89,17 @@
 }
 
 .logo-icon {
-  width: 54px;
-  height: 54px;
+  width: 36px;
+  height: 36px;
   background-color: #0EA5E9;
-  border-radius: 14px;
+  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .logo-text {
-  font-size: 1.85rem;
+  font-size: 1.4rem;
   font-weight: 800;
   letter-spacing: -0.5px;
 }
@@ -165,9 +165,9 @@
   position: relative;
   display: flex;
   align-items: center;
-  justify-content: flex-end; /* Nav and actions push to the right together */
+  justify-content: flex-end;
   flex: 1;
-  padding-bottom: 8px; /* space for the underline */
+  padding-bottom: 4px; /* Reduced to match tighter nav height */
 }
 
 .saas-nav-list {
@@ -474,4 +474,102 @@
   background: linear-gradient(135deg, #0284c7, #0369a1);
   box-shadow: 0 4px 14px rgba(14,165,233,0.45);
   transform: translateY(-1px);
+}
+
+/* Notifications Menu */
+.notif-menu-container {
+  position: relative;
+}
+
+.notif-menu-dropdown {
+  width: 340px;
+  right: -50px; 
+}
+
+.notif-header {
+  justify-content: space-between;
+}
+
+.notif-badge {
+  background: #ef4444;
+  color: white;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 10px;
+}
+
+.notif-menu-body {
+  max-height: 350px;
+  overflow-y: auto;
+}
+
+.notif-item {
+  display: flex;
+  padding: 12px 16px;
+  gap: 12px;
+  border-bottom: 1px solid #f1f5f9;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.notif-item:hover {
+  background: #f8fafc;
+}
+
+.notif-item.unread {
+  background: #f0f9ff;
+}
+
+.notif-item.unread:hover {
+  background: #e0f2fe;
+}
+
+.notif-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.notif-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.notif-text {
+  font-size: 0.85rem;
+  color: #334155;
+  line-height: 1.4;
+}
+
+.notif-time {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  font-weight: 500;
+}
+
+.notif-menu-footer {
+  padding: 12px;
+  text-align: center;
+  background: #f8fafc;
+  border-top: 1px solid #e2e8f0;
+}
+
+.notif-show-more {
+  background: none;
+  border: none;
+  color: #0ea5e9;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: color 0.15s;
+}
+
+.notif-show-more:hover {
+  color: #0284c7;
 }

@@ -8,7 +8,8 @@
 .main-content {
   flex: 1;
   padding: 2rem;
-  background-color: #f8fafc; /* Subtle gray background */
+  padding-top: 5.5rem; /* Push ALL page titles + subtitles fully below the sticky nav */
+  background-color: #f8fafc;
 }
 
 .content-container {
