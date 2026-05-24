@@ -1,0 +1,10 @@
+# ZIP files
+*.zip
+
+# OS metadata
+.DS_Store
+
+# Local environments / dependencies
+node_modules/
+dist/
+.env*

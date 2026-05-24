@@ -1,0 +1,495 @@
+/* Redesigned AIAssistantEntrance.css */
+
+/* 1. Subtle Cinematic Glass Overlay (Phases 1-4) */
+.ai-cinematic-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: radial-gradient(circle at center, rgba(15, 23, 42, 0.12) 0%, rgba(15, 23, 42, 0.24) 100%);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 9990;
+  opacity: 0;
+  transition: opacity 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+  pointer-events: all;
+}
+
+.ai-cinematic-overlay.active {
+  opacity: 1;
+}
+
+/* 2. Redesigned AI Energy Core SVG Styling & Keyframes */
+.glass-base-plate {
+  transition: fill 0.4s, stroke 0.4s;
+}
+
+/* Concentric Holographic Ring Rotations */
+.holo-ring-outer {
+  transform-origin: 60px 60px;
+  animation: rotateClockwise 28s linear infinite;
+  transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), stroke-width 0.4s, opacity 0.4s, stroke 0.4s;
+}
+
+.holo-ring-middle {
+  transform-origin: 60px 60px;
+  animation: rotateCounterClockwise 18s linear infinite;
+  transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), stroke-width 0.4s, opacity 0.4s, stroke 0.4s;
+}
+
+.holo-ring-inner {
+  transform-origin: 60px 60px;
+  animation: rotateClockwise 10s linear infinite;
+  transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), stroke-width 0.4s, opacity 0.4s, stroke 0.4s;
+}
+
+/* Neural Network Telemetry Flows */
+.pulse-path-1, .pulse-path-2, .pulse-path-3, .pulse-path-4 {
+  animation: neuralPulseFlow 2.5s linear infinite;
+}
+
+@keyframes neuralPulseFlow {
+  from { stroke-dashoffset: 16; }
+  to { stroke-dashoffset: 0; }
+}
+
+.neural-node {
+  animation: nodeGlowPulse 3s ease-in-out infinite alternate;
+}
+
+@keyframes nodeGlowPulse {
+  0% { opacity: 0.35; r: 1.2px; }
+  100% { opacity: 0.95; r: 1.8px; }
+}
+
+/* Orbiting Fragments/Particles */
+.fragment-1 { transform-origin: 60px 60px; animation: floatFragment1 7s ease-in-out infinite; }
+.fragment-2 { transform-origin: 60px 60px; animation: floatFragment2 9s ease-in-out infinite; }
+.fragment-3 { transform-origin: 60px 60px; animation: floatFragment3 8s ease-in-out infinite; }
+.fragment-4 { transform-origin: 60px 60px; animation: floatFragment4 10s ease-in-out infinite; }
+
+@keyframes floatFragment1 {
+  0%, 100% { transform: translate(0px, 0px) scale(0.9); opacity: 0.45; }
+  50% { transform: translate(-4px, -3px) scale(1.1); opacity: 0.95; }
+}
+
+@keyframes floatFragment2 {
+  0%, 100% { transform: translate(0px, 0px) scale(1.05); opacity: 0.35; }
+  50% { transform: translate(4px, 2px) scale(0.8); opacity: 0.85; }
+}
+
+@keyframes floatFragment3 {
+  0%, 100% { transform: translate(0px, 0px) rotate(45deg); opacity: 0.55; }
+  50% { transform: translate(3px, -4px) rotate(135deg); opacity: 0.9; }
+}
+
+@keyframes floatFragment4 {
+  0%, 100% { transform: translate(0px, 0px) rotate(45deg) scale(0.9); opacity: 0.35; }
+  50% { transform: translate(-3px, 4px) rotate(-135deg) scale(1.15); opacity: 0.75; }
+}
+
+/* Central Nucleus Core */
+.nucleus-hex-outer {
+  transform-origin: 60px 60px;
+  animation: coreHexPulse 4s ease-in-out infinite;
+  transition: transform 0.4s, filter 0.4s;
+}
+
+@keyframes coreHexPulse {
+  0%, 100% {
+    transform: scale(0.96) rotate(0deg);
+    filter: drop-shadow(0 0 6px rgba(56, 189, 248, 0.45));
+  }
+  50% {
+    transform: scale(1.03) rotate(4deg);
+    filter: drop-shadow(0 0 16px rgba(56, 189, 248, 0.85));
+  }
+}
+
+.nucleus-hex-inner {
+  transform-origin: 60px 60px;
+  animation: innerHexPulse 4s ease-in-out infinite;
+}
+
+@keyframes innerHexPulse {
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+    stroke: rgba(56, 189, 248, 0.5);
+  }
+  50% {
+    transform: scale(0.97) rotate(-4deg);
+    stroke: rgba(56, 189, 248, 0.85);
+  }
+}
+
+.nucleus-center-node {
+  animation: centerNodePulse 2s ease-in-out infinite alternate;
+}
+
+@keyframes centerNodePulse {
+  0% { r: 4px; filter: brightness(0.95) drop-shadow(0 0 4px #ffffff); }
+  100% { r: 5px; filter: brightness(1.2) drop-shadow(0 0 10px #ffffff); }
+}
+
+/* Click Ripple Ring */
+.click-ripple-pulse {
+  transform-origin: 60px 60px;
+  animation: clickRippleAnim 0.45s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
+}
+
+@keyframes clickRippleAnim {
+  0% { transform: scale(0.7); opacity: 1; stroke-width: 3px; }
+  100% { transform: scale(2.8); opacity: 0; stroke-width: 0.5px; }
+}
+
+@keyframes rotateClockwise {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes rotateCounterClockwise {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
+}
+
+/* 3. Welcome Interface - Premium Glassmorphic Card (Left-Aligned Layout) */
+.ai-welcome-container-left {
+  position: fixed;
+  top: 50%;
+  left: 12%;
+  transform: translateY(-50%);
+  width: 90%;
+  max-width: 530px;
+  z-index: 9993;
+  pointer-events: auto;
+}
+
+.ai-welcome-card-premium {
+  background: rgba(255, 255, 255, 0.74);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 
+    0 24px 60px rgba(15, 23, 42, 0.05),
+    0 0 85px rgba(56, 189, 248, 0.04),
+    inset 0 1px 1px rgba(255, 255, 255, 0.9);
+  border-radius: 28px;
+  padding: 3.75rem 3.25rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.welcome-badge-premium {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: rgba(56, 189, 248, 0.08);
+  border: 1px solid rgba(56, 189, 248, 0.18);
+  color: #0284c7;
+  padding: 0.4rem 0.95rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 1.5rem;
+}
+
+.welcome-badge-premium .pulse-dot {
+  width: 5px;
+  height: 5px;
+  background-color: #0284c7;
+  border-radius: 50%;
+  box-shadow: 0 0 6px #0284c7;
+  animation: badgeDotPulse 2s ease-in-out infinite;
+}
+
+@keyframes badgeDotPulse {
+  0%, 100% { transform: scale(1); opacity: 0.6; }
+  50% { transform: scale(1.3); opacity: 1; }
+}
+
+.welcome-title-premium {
+  font-size: 2.1rem;
+  font-weight: 800;
+  color: #0f172a;
+  line-height: 1.3;
+  margin-bottom: 1.25rem;
+  letter-spacing: -0.03em;
+  text-align: left;
+}
+
+.welcome-title-premium span {
+  background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.welcome-subtitle-premium {
+  font-size: 0.95rem;
+  color: #475569;
+  line-height: 1.65;
+  margin-bottom: 2.5rem;
+  font-weight: 400;
+  text-align: left;
+}
+
+.welcome-btn-premium {
+  background: #0f172a;
+  color: #ffffff;
+  font-weight: 600;
+  padding: 0.95rem 2.2rem;
+  border-radius: 14px;
+  font-size: 0.9rem;
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.12);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  width: 100%;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.welcome-btn-premium:hover {
+  background: #1e293b;
+  transform: translateY(-1px);
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.18);
+}
+
+/* 4. Mini Launcher Orb Mode (Jarvis Style Operational Standby Core) */
+.mini-orb-premium {
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 
+    0 15px 35px rgba(15, 23, 42, 0.14),
+    0 0 25px rgba(56, 189, 248, 0.2),
+    inset 0 1px 2px rgba(255, 255, 255, 0.85),
+    0 2px 8px rgba(15, 23, 42, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: grab;
+  position: relative;
+  transition: border-color 0.4s, box-shadow 0.4s, transform 0.4s;
+  animation: floatBreathing 4s ease-in-out infinite;
+}
+
+.mini-orb-premium::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(56, 189, 248, 0.22);
+  animation: orbPulseRing 3.5s cubic-bezier(0.25, 0.8, 0.25, 1) infinite;
+  pointer-events: none;
+}
+
+@keyframes orbPulseRing {
+  0% { transform: scale(0.95); opacity: 0.8; }
+  50% { transform: scale(1.18); opacity: 0; }
+  100% { transform: scale(0.95); opacity: 0; }
+}
+
+@keyframes floatBreathing {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+}
+
+/* Launcher Hover State - Concentric rings expand outward */
+.mini-orb-premium:hover .holo-ring-outer {
+  transform: scale(1.22);
+  stroke-width: 1.5px;
+  opacity: 0.95;
+  stroke: rgba(56, 189, 248, 0.5);
+}
+
+.mini-orb-premium:hover .holo-ring-middle {
+  transform: scale(1.14);
+  stroke-width: 1.75px;
+  opacity: 0.95;
+}
+
+.mini-orb-premium:hover .holo-ring-inner {
+  transform: scale(1.08);
+  stroke-width: 1.25px;
+  opacity: 0.95;
+}
+
+/* Glow intensity increases on hover */
+.mini-orb-premium:hover .nucleus-hex-outer {
+  filter: drop-shadow(0 0 24px rgba(56, 189, 248, 1)) brightness(1.3);
+  transform: scale(1.05);
+}
+
+.mini-orb-premium:hover .nucleus-center-node {
+  filter: brightness(1.3) drop-shadow(0 0 12px #ffffff);
+}
+
+/* Backdrop glow expansion on hover */
+.mini-orb-premium:hover .orb-backdrop-glow {
+  transform: translate(-50%, -50%) scale(1.4);
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.55) 0%, transparent 70%);
+}
+
+/* Floating elevation / scale increase on hover */
+.mini-orb-premium:hover {
+  animation-play-state: paused;
+  transform: translateY(-7px) scale(1.06);
+  border-color: rgba(56, 189, 248, 0.6);
+  box-shadow: 
+    0 24px 50px rgba(15, 23, 42, 0.22),
+    0 0 40px rgba(56, 189, 248, 0.45),
+    inset 0 1px 2px rgba(255, 255, 255, 0.95);
+}
+
+.mini-orb-premium:active {
+  cursor: grabbing;
+}
+
+/* Backdrop Glow for visual separation from underlying webpage content */
+.orb-backdrop-glow {
+  position: absolute;
+  width: 104px;
+  height: 104px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.3) 0%, transparent 70%);
+  filter: blur(8px);
+  z-index: -1;
+  pointer-events: none;
+  animation: backdropPulse 4s ease-in-out infinite;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: transform 0.4s, background 0.4s;
+}
+
+@keyframes backdropPulse {
+  0%, 100% { transform: translate(-50%, -50%) scale(0.9); opacity: 0.6; }
+  50% { transform: translate(-50%, -50%) scale(1.1); opacity: 1; }
+}
+
+/* Tooltip for Redesigned Launcher */
+.orb-tooltip-premium {
+  position: absolute;
+  top: 80px;
+  right: 0;
+  background: rgba(15, 23, 42, 0.94);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  padding: 0.6rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(-8px);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.orb-tooltip-premium .tooltip-title {
+  color: #38bdf8;
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+}
+
+.orb-tooltip-premium .tooltip-subtitle {
+  color: #94a3b8;
+  font-size: 0.72rem;
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+.mini-orb-premium:hover .orb-tooltip-premium {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Ambient particles under welcome card */
+.welcome-glow-accent {
+  position: absolute;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.07) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 9991;
+  filter: blur(20px);
+}
+
+/* 5. Phase 8 Page-out fade transition */
+.ai-exit-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #f8fafc;
+  z-index: 10000;
+  opacity: 0;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.ai-exit-overlay.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.exit-loading-text {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 500;
+  color: #0f172a;
+  opacity: 0;
+  transform: translateY(12px);
+  margin-top: 1.5rem;
+  transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1) 0.3s;
+}
+
+.ai-exit-overlay.active .exit-loading-text {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Operational pulse rings for Page Exit */
+.exit-pulse-core {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #bae6fd 0%, #0284c7 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-shadow: 0 0 30px rgba(56, 189, 248, 0.4);
+}
+
+.exit-pulse-ring {
+  position: absolute;
+  inset: -10px;
+  border-radius: 50%;
+  border: 2px solid rgba(56, 189, 248, 0.3);
+  animation: exitPulseAnim 1.6s cubic-bezier(0.25, 0.8, 0.25, 1) infinite;
+}
+
+@keyframes exitPulseAnim {
+  0% { transform: scale(0.9); opacity: 1; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
